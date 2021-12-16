@@ -1,14 +1,19 @@
-import axios from 'axios'
-import { useState } from 'react'
+import Content from './components/Content.js'
+import StyledNavbar from './components/Navbar.js'
 
-import Info from './components/Api.js'
+import useForm from './hooks/useForm.js'
 
 const App = () => {
-    return (
-        <div>
-           <Info />
-        </div>
-    )
+  const [form, handleChange] = useForm({ date: '' })
+
+  console.log(form)
+
+  return (
+    <div>
+      <StyledNavbar change={handleChange} />
+      <Content data={form.apiData} />
+    </div>
+  )
 }
 
 export default App

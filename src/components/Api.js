@@ -1,30 +1,12 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
 
-const URL = 'https://api.nasa.gov/planetary/apod?api_key=aaa&date=1998-08-08'
+const API_KEY = process.env.REACT_APP_NASA_API_KEY
+const URL = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&date=`
 
-const Info = () => {
-    const [pokemon, setPokemon] = useState([])
-    const { date, explanation , title, url } = pokemon
+const Api = async (date = '1998-08-08') => {
+  const response = await axios.get(URL + date)
 
-    const api = async () => {
-        const response = await axios.get(URL)
-
-        setPokemon(response.data)
-    }
-
-    useEffect(() => {
-        void api()
-    }, [])
-
-    return (
-        <div>
-            <p>{date}</p>
-            <p>{explanation}</p>
-            <p>{title}</p>
-            <p>{url}</p>
-        </div>
-    )
+  return response.data
 }
 
-export default Info
+export default Api
