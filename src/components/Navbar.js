@@ -14,7 +14,7 @@ const StyledNavbar = styled(Navbar)`
   padding: 20px 25px;
   display: flex;
   justify-content: center;
-  background-color: #121212;
+  background-color: #11324D;
 `
 
 export default StyledNavbar

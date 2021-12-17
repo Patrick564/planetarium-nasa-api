@@ -1,0 +1,22 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 error pnpm": {
+    "code": "ERR_PNPM_UNSUPPORTED_ENGINE",
+    "packageId": "/home/patrick/workspace/planetarium-nasa-api",
+    "wanted": {
+      "pnpm": "6.24.0"
+    },
+    "current": {
+      "node": "v16.13.0",
+      "pnpm": "6.20.3"
+    },
+    "err": {
+      "name": "pnpm",
+      "message": "Unsupported engine for /home/patrick/workspace/planetarium-nasa-api: wanted: {\"pnpm\":\"6.24.0\"} (current: {\"node\":\"v16.13.0\",\"pnpm\":\"6.20.3\"})",
+      "code": "ERR_PNPM_UNSUPPORTED_ENGINE",
+      "stack": "pnpm: Unsupported engine for /home/patrick/workspace/planetarium-nasa-api: wanted: {\"pnpm\":\"6.24.0\"} (current: {\"node\":\"v16.13.0\",\"pnpm\":\"6.20.3\"})\n    at checkEngine (/home/patrick/.local/share/pnpm/nodejs/16.13.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.20.3/node_modules/pnpm/dist/pnpm.cjs:36013:16)\n    at checkPackage (/home/patrick/.local/share/pnpm/nodejs/16.13.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.20.3/node_modules/pnpm/dist/pnpm.cjs:36157:104)\n    at packageIsInstallable (/home/patrick/.local/share/pnpm/nodejs/16.13.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.20.3/node_modules/pnpm/dist/pnpm.cjs:36181:61)\n    at tryReadProjectManifest (/home/patrick/.local/share/pnpm/nodejs/16.13.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.20.3/node_modules/pnpm/dist/pnpm.cjs:41322:55)\n    at async handler (/home/patrick/.local/share/pnpm/nodejs/16.13.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.20.3/node_modules/pnpm/dist/pnpm.cjs:117134:48)\n    at async /home/patrick/.local/share/pnpm/nodejs/16.13.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.20.3/node_modules/pnpm/dist/pnpm.cjs:133927:20\n    at async run (/home/patrick/.local/share/pnpm/nodejs/16.13.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.20.3/node_modules/pnpm/dist/pnpm.cjs:133902:34)\n    at async runPnpm (/home/patrick/.local/share/pnpm/nodejs/16.13.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.20.3/node_modules/pnpm/dist/pnpm.cjs:134113:5)\n    at async /home/patrick/.local/share/pnpm/nodejs/16.13.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.20.3/node_modules/pnpm/dist/pnpm.cjs:134105:7"
+    }
+  }
+}

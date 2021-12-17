@@ -7,13 +7,14 @@ const Button = ({ ...props }) => {
 }
 
 const StyledButton = styled(Button)`
-  background: #448aff;
+  background: #6B7AA1;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   color: white;
-  padding 5px;
-  margin 5px;
+  padding 10px 10px;
+  margin 10px 10px;
   cursor: pointer;
+  display: inline-block;
 `
 
 export default StyledButton

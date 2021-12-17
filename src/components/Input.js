@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const Input = ({ ...props }) => {
   return (
-    <input {...props} type={'search'} name={'date'} placeholder='05/12/1998' />
+    <input {...props} type={'search'} name={'date'} placeholder='Ex. 1998-08-07' />
   )
 }
 
@@ -11,7 +11,7 @@ const StyledInput = styled(Input)`
   padding: 10px;
   margin: 5px;
   outline: none;
-  border-radius: 5px;
+  border-radius: 10px;
 `
 
 export default StyledInput

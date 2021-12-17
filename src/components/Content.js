@@ -8,22 +8,36 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
   display: flex;
-  width: 70%;
+  width: 80%;
 
-  @media (min-width: 320px) and (max-width: 767px) {
+  @media (min-width: 320px) and (max-width: 425px) {
     flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  @media (min-width: 426px) and (max-width: 768px) {
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    width: 95%;
+    align-items: center;
   }
 `
 
 const Title = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: black;
+  background-color: #316B83;
   align-items: baseline;
   margin: 20px 20px;
   padding: 20px 20px;
   border-radius: 15px;
   color: white;
+  font-family: 'Rubik', sans-serif;
 `
 
 const Info = styled.div`
@@ -33,28 +47,32 @@ const Info = styled.div`
 `
 
 const Explanation = styled.p`
-  margin: 15px 20px;
-  padding: 10px 20px;
+  margin: 20px 20px;
+  padding: 35px 35px;
   border-radius: 15px;
-  border: 1px solid black;
-  background-color: #121212;
+  background-color: #316B83;
   color: white;
 `
 const Img = styled.img`
   width: 500px;
   height: 500px;
-  border-radius: 50%;
+  border-radius: 10%;
   padding: 20px 20px;
   margin: 20px 20px;
 
-  @media (min-width: 320px) and (max-width: 767px) {
-    width: 150px;
-    height: 150px;
-  }
-
-  @media (min-width: 768px) and (max-width: 1023px) {
+  @media (min-width: 320px) and (max-width: 425px) {
     width: 250px;
     height: 250px;
+  }
+
+  @media (min-width: 426px) and (max-width: 768px) {
+    width: 350px;
+    height: 350px;
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    width: 450px;
+    height: 450px;
   }
 `
 
@@ -67,7 +85,7 @@ const Content = ({ data }) => {
         <Info>
           <Title>
             <h2>{data?.title}</h2>
-            <span>{data?.date}</span>
+            <span style={{ fontStyle: 'italic' }}>{data?.date}</span>
           </Title>
 
           <Explanation>{data?.explanation}</Explanation>
