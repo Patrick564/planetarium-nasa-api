@@ -1,19 +1,18 @@
-import Content from './components/Content.js'
-import StyledNavbar from './components/Navbar.js'
+import { Route, Routes } from 'react-router-dom'
 
-import useForm from './hooks/useForm.js'
+import HomeSelector from './components/HomeSelector.js'
+
+import Apod from './routes/apod.js'
+import MarsRover from './routes/marsRover.js'
 
 const App = () => {
-  const [form, handleChange] = useForm({ date: '' })
-
-  console.log(form)
-
   return (
-    <div>
-      <StyledNavbar change={handleChange} />
-      <Content data={form.apiData} />
-    </div>
-  )
+    <Routes>
+      <Route path={'/'} element={<HomeSelector />} />
+      <Route path={'/apod'} element={<Apod />} />
+      <Route path={'/mars-rover'} element={<MarsRover />} />
+    </Routes>
+)
 }
 
 export default App
