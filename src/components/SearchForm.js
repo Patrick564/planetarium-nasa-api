@@ -1,11 +1,11 @@
-import StyledButton from './Button.js'
+import Button from './Button.js'
 import StyledInput from './Input.js'
 
 const SearchForm = ({ handleChange }) => {
   return (
     <form onSubmit={handleChange}>
       <StyledInput />
-      <StyledButton />
+      <Button>Search</Button>
     </form>
   )
 }

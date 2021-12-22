@@ -1,12 +1,6 @@
 import styled from 'styled-components'
 
-const Button = ({ ...props }) => {
-  return (
-    <button {...props}>Search</button>
-  )
-}
-
-const StyledButton = styled(Button)`
+const Button = styled.button`
   background: #6B7AA1;
   border: none;
   border-radius: 10px;
@@ -17,4 +11,4 @@ const StyledButton = styled(Button)`
   display: inline-block;
 `
 
-export default StyledButton
+export default Button

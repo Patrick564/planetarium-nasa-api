@@ -4,6 +4,27 @@
   font-family: 'Rubik', sans-serif;
 }
 
+html {
+  height: 100%;
+}
+
+@keyframes zoom {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 100% 0;
+  }
+}
+
 body {
-  background-color: #EEEEEE;
+  background-image: url('./img/5430284.jpg');
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(5px);
+  height: 100%;
+  -webkit-animation: zoom 2s linear infinte alternate;
+  animation: zoom 2s linear infinte alternate;
 }

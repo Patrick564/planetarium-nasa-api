@@ -1,5 +1,6 @@
 import Content from '../components/Content.js'
-import StyledNavbar from '../components/Navbar.js'
+import Navbar from '../components/Navbar.js'
+import SearchForm from '../components/SearchForm.js'
 
 import useForm from '../hooks/useForm.js'
 
@@ -8,7 +9,10 @@ const Apod = () => {
 
   return (
     <div>
-      <StyledNavbar change={handleChange} />
+      <Navbar>
+        <SearchForm handleChange={handleChange} />
+      </Navbar>
+
       <Content data={form.apiData} />
     </div>
   )

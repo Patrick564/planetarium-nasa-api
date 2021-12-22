@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
 
-import Api from '../components/Api.js'
+import Apod from '../api/apod.js'
 
 const useForm = (initialState) => {
   const [form, setForm] = useState(initialState)
 
   const callApi = async (date) => {
-    return await Api(date)
+    return await Apod(date)
   }
 
   const handleChange = async (e) => {
