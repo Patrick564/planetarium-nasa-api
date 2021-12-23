@@ -23,7 +23,7 @@ const useForm = (initialState) => {
 
   useEffect(() => {
     const firstCall = async () => {
-      const apiData = await callApi('2021-12-16')
+      const apiData = await callApi('')
 
       setForm({ apiData })
     }

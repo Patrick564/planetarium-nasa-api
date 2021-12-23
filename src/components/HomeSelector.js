@@ -20,16 +20,21 @@ const Container = styled.div`
 
 const StyledLink = styled(Link)`
   color: black;
+  backface-visibility: hidden;
   background-color: #fff;
   border: 1px solid #1641D9;
   border-radius: 15px;
   cursor: pointer;
-  font-size: 1.2rem;
   margin: 1.5rem 1.5rem;
   padding: 1.5rem 1.5rem;
   text-decoration: none;
+  transition: transform 0.2s ease-in-out;
   min-width: 10rem;
   max-width: 25rem;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 `
 
 const StyledTitle = styled.h4`
