@@ -1,14 +1,21 @@
 import styled from 'styled-components'
 import { useState } from 'react'
+import dayjs from 'dayjs'
 
 import Button from '../components/Button.js'
 import Content from '../components/Content.js'
 import Navbar from '../components/Navbar.js'
-import StyledInput from '../components/Input.js'
+import Input from '../components/Input.js'
 
 import useForm from '../hooks/useForm.js'
 
 import HomeImg from '../img/home.svg'
+
+const StatusMessage = styled.span`
+  font-size: 0.8rem;
+  align-self: center;
+  color: tomato;
+`
 
 const Img = styled.img`
   display: block;
@@ -38,7 +45,7 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   padding: 5px 5px;
-  gap: 30px
+  gap: 40px
 `
 
 const CloseButton = styled(Button)`
@@ -52,9 +59,26 @@ const CloseButton = styled(Button)`
 const Apod = () => {
   const [cardStatus, setCardStatus] = useState(false)
   const [form, handleChange] = useForm({ date: '' })
+  const [date, setDate] = useState('')
+  const [disabled, setDisabled] = useState(false)
 
   const changeCardStatus = () => {
     setCardStatus(!cardStatus)
+  }
+
+  const changeDate = (e) => {
+    const inputDate = dayjs(e.target.value)
+
+    if (inputDate.isBefore(dayjs('1995-07-01'))) {
+      setDate('Sorry, try after 1995-07-01')
+      setDisabled(true)
+    } else if (inputDate.isAfter(dayjs())) {
+      setDate('Do you want to see the future?')
+      setDisabled(true)
+    } else {
+      setDate('')
+      setDisabled(false)
+    }
   }
 
   return (
@@ -70,8 +94,13 @@ const Apod = () => {
       <CardMenu status={cardStatus}>
         <Form onSubmit={handleChange}>
             <CloseButton onClick={changeCardStatus}>X</CloseButton>
-            <StyledInput />
-            <Button onClick={changeCardStatus}>Search date</Button>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <Input onChange={changeDate} type={'date'} name={'date'} />
+              <StatusMessage>{date}</StatusMessage>
+            </div>
+
+            <Button disabled={disabled} onClick={changeCardStatus}>Search date</Button>
         </Form>
       </CardMenu>
 

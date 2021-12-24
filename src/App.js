@@ -12,7 +12,7 @@ const App = () => {
       <Route path={'/apod'} element={<Apod />} />
       <Route path={'/mars-rover'} element={<MarsRover />} />
     </Routes>
-)
+  )
 }
 
 export default App

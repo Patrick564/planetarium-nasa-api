@@ -9,6 +9,11 @@ const Button = styled.button`
   margin 0px 0px;
   cursor: pointer;
   display: inline-block;
+
+  &:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
 `
 
 export default Button
