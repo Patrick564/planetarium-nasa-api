@@ -27,34 +27,42 @@ const Container = styled.div`
 const Title = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: #316B83;
   align-items: baseline;
-  margin: 20px 20px;
-  padding: 20px 20px;
+  margin: 5px 5px;
+  padding: 15px 15px;
   border-radius: 15px;
-  color: white;
   font-family: 'Rubik', sans-serif;
+  box-shadow: 0 0 5px #133F47;
+  color: #34B0C6;
+
+  @media (min-width: 320px) and (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px
+  }
 `
 
 const Info = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 15px;
 `
 
 const Explanation = styled.p`
-  margin: 20px 20px;
+  margin: 5px 5px;
   padding: 35px 35px;
   border-radius: 15px;
-  background-color: #316B83;
-  color: white;
+  //background-color: #316B83;
+  color: #34B0C6;
+  box-shadow: 0 0 5px #133F47;
 `
 const Img = styled.img`
   width: 500px;
   height: 500px;
   border-radius: 10%;
-  padding: 20px 20px;
-  margin: 20px 20px;
+  margin: 40px 40px;
+  box-shadow: 0 0 5px #133F47;
 
   @media (min-width: 320px) and (max-width: 425px) {
     width: 250px;
@@ -73,10 +81,12 @@ const Img = styled.img`
 `
 
 const Content = ({ data }) => {
+  let url = data?.url || './img/default-img.png'
+
   return (
     <Wrapper>
       <Container>
-        <Img src={data?.url}></Img>
+        <Img src={url} alt={'Image'} />
 
         <Info>
           <Title>

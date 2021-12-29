@@ -28,7 +28,7 @@ const useForm = (initialState) => {
       setForm({ apiData })
     }
 
-    firstCall()
+    void firstCall()
   }, [])
 
   return [form, handleChange]

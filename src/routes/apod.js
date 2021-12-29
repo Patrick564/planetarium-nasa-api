@@ -29,9 +29,9 @@ const Form = styled.form`
 const CloseButton = styled(Button)`
   background: #fff;
   color: black;
-  padding-top: 0px;
+  padding-top: 0;
   border-bottom: 1px solid #ccc;
-  border-radius: 0px;
+  border-radius: 0;
 `
 
 const Apod = () => {

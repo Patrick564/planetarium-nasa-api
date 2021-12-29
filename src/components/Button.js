@@ -5,8 +5,7 @@ const Button = styled.button`
   border: none;
   border-radius: 10px;
   color: white;
-  padding 15px 15px;
-  margin 0px 0px;
+  padding: 15px 15px;
   cursor: pointer;
   display: inline-block;
 
