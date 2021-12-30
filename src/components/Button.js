@@ -8,6 +8,7 @@ const Button = styled.button`
   padding: 15px 15px;
   cursor: pointer;
   display: inline-block;
+  outline: none;
 
   &:disabled {
     background: #ccc;

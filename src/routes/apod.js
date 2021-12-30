@@ -34,6 +34,20 @@ const CloseButton = styled(Button)`
   border-radius: 0;
 `
 
+const Background = styled.div`
+  right: 0;
+  left: 0;
+  top: 20%;
+  position: absolute;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 250px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px 20px;
+`
+
 const Apod = () => {
   const [cardStatus, setCardStatus] = useState(false)
   const [form, handleChange] = useForm({ date: '' })
@@ -45,6 +59,21 @@ const Apod = () => {
 
   return (
     <div>
+      <CardMenu id={'card-menu'} status={cardStatus} onClick={changeCardStatus}>
+        <Background>
+          <Form onSubmit={handleChange}>
+              <CloseButton onClick={changeCardStatus}>X</CloseButton>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <Input onChange={validateDate} type={'date'} name={'date'} />
+                <StatusMessage>{status.message}</StatusMessage>
+              </div>
+
+              <Button disabled={status.disabledButton} onClick={changeCardStatus}>Search date</Button>
+          </Form>
+        </Background>
+      </CardMenu>
+
       <Navbar>
         <a href={'/'}>
           <Image src={HomeImg} alt={'Home'} />
@@ -53,18 +82,6 @@ const Apod = () => {
         <Button onClick={changeCardStatus}>Search</Button>
       </Navbar>
 
-      <CardMenu status={cardStatus}>
-        <Form onSubmit={handleChange}>
-            <CloseButton onClick={changeCardStatus}>X</CloseButton>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              <Input onChange={validateDate} type={'date'} name={'date'} />
-              <StatusMessage>{status.message}</StatusMessage>
-            </div>
-
-            <Button disabled={status.disabledButton} onClick={changeCardStatus}>Search date</Button>
-        </Form>
-      </CardMenu>
 
       <Content data={form.apiData} />
     </div>
