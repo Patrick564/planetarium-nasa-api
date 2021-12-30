@@ -24,10 +24,11 @@ const CardMenu = styled.div`
   right: 0;
   bottom: 0;
   position: absolute;
+  height: 100%;
   visibility: ${ props => props.status ? 'visible' : 'hidden' };
   opacity: ${ props => props.status ? '1' : '0' };
   border-radius: 10px;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
+  transition: opacity 0.5s ease-in, visibility 0.5s ease-in, backdrop-filter 0.2s ease-out;
   backdrop-filter: ${ props => props?.status ? 'blur(5px)' : 'blur(0)' }
 `
 
