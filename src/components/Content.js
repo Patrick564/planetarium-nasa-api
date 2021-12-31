@@ -81,7 +81,8 @@ const Img = styled.img`
 `
 
 const Content = ({ data }) => {
-  let url = data?.url || './img/default-img.png'
+  const loadingGift = 'https://giphy.com/embed/3o7bu3XilJ5BOiSGic'
+  let url = data?.url || loadingGift
 
   return (
     <Wrapper>

@@ -48,20 +48,35 @@ const Background = styled.div`
   padding: 20px 20px;
 `
 
+const Card = styled.div`
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  height: 100%;
+  visibility: ${ props => props.status ? 'visible' : 'hidden' };
+  opacity: ${ props => props.status ? '1' : '0' };
+  border-radius: 10px;
+  transition: opacity 0.5s ease-in, visibility 0.5s ease-in, backdrop-filter 0.2s ease-out;
+  backdrop-filter: ${ props => props?.status ? 'blur(5px)' : 'blur(0)' }
+`
+
 const Apod = () => {
   const [cardStatus, setCardStatus] = useState(false)
   const [form, handleChange] = useForm({ date: '' })
   const [status, validateDate] = useValidateDate({ message: '', disabledButton: false })
 
-  const changeCardStatus = () => {
+  const changeCardStatus = (e) => {
     setCardStatus(!cardStatus)
   }
 
   return (
     <div>
-      <CardMenu id={'card-menu'} status={cardStatus} onClick={changeCardStatus}>
-        <Background>
-          <Form onSubmit={handleChange}>
+      <Card id={'card-menu'} status={cardStatus}>
+        <CardMenu status={cardStatus} onClick={changeCardStatus} />
+        <Background id={'card-search-form'}>
+          <Form id={'search-form'} onSubmit={handleChange}>
               <CloseButton onClick={changeCardStatus}>X</CloseButton>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
@@ -72,14 +87,14 @@ const Apod = () => {
               <Button disabled={status.disabledButton} onClick={changeCardStatus}>Search date</Button>
           </Form>
         </Background>
-      </CardMenu>
+      </Card>
 
       <Navbar>
         <a href={'/'}>
           <Image src={HomeImg} alt={'Home'} />
         </a>
 
-        <Button onClick={changeCardStatus}>Search</Button>
+        <Button id={'open-button'} onClick={changeCardStatus}>Search</Button>
       </Navbar>
 
 
