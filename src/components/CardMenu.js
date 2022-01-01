@@ -11,7 +11,6 @@ const CardMenu = styled.div`
   opacity: ${ props => props.status ? '1' : '0' };
   border-radius: 10px;
   transition: opacity 0.5s ease-in, visibility 0.5s ease-in, backdrop-filter 0.2s ease-out;
-  //backdrop-filter: ${ props => props?.status ? 'blur(5px)' : 'blur(0)' }
 `
 
 export default CardMenu

@@ -63,13 +63,16 @@ const Card = styled.div`
 `
 
 const Apod = () => {
+  // const [] useState({ visibility: false, blur: false })
   const [cardStatus, setCardStatus] = useState(false)
   const [form, handleChange] = useForm({ date: '' })
   const [status, validateDate] = useValidateDate({ message: '', disabledButton: false })
 
-  const changeCardStatus = (e) => {
+  const changeCardStatus = () => {
     setCardStatus(!cardStatus)
   }
+
+  // CardMenu BackgroundMenu SearchForm
 
   return (
     <div>
