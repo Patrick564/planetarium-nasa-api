@@ -5,12 +5,12 @@ import PhotosGrid from '../components/PhotosGrid.js'
 
 import useMarsForm from '../hooks/useMarsForm.js'
 
+import CardForm from '../components/CardForm.js'
 import Wrapper from '../components/Wrapper.js'
 import styled from 'styled-components'
 import Button from '../components/Button.js'
 import Select from '../components/Select.js'
 import Input from '../components/Input.js'
-import BackgroundForm from '../components/BackgroundForm.js'
 
 const CloseButton = styled(Button)`
   background: #fff;
@@ -18,13 +18,6 @@ const CloseButton = styled(Button)`
   padding-top: 0;
   border-bottom: 1px solid #ccc;
   border-radius: 0;
-`
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  padding: 5px 5px;
-  gap: 40px
 `
 
 const MarsRover = () => {
@@ -43,8 +36,7 @@ const MarsRover = () => {
 				<Button onClick={changeCardStatus}>Search</Button>
 			</Navbar>
 
-			<BackgroundForm status={cardStatus}>
-				<Form onSubmit={handleChange}>
+			<CardForm status={cardStatus} onSubmit={handleChange}>
 					<CloseButton onClick={changeCardStatus}>X</CloseButton>
 
 					<div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
@@ -69,8 +61,7 @@ const MarsRover = () => {
 					</div>
 
 					<Button onClick={changeCardStatus}>Search photos</Button>
-				</Form>
-			</BackgroundForm>
+			</CardForm>
 
 			<Wrapper>
 				<PhotosGrid photos={photos}/>

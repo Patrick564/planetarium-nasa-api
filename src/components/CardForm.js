@@ -1,5 +1,8 @@
 import styled from 'styled-components'
 
+import CloseButton from './CloseButton.js'
+import Button from './Button'
+
 const Card = styled.div`
   top: 0;
   left: 0;
@@ -43,13 +46,17 @@ const Form = styled.form`
   gap: 40px
 `
 
-const CardForm = ({ changeVisibility, formSubmit, visible, children }) => {
+const CardForm = ({ changeVisibility, formSubmit, visible, children, submitButton }) => {
 	return (
 		<Card id={'card-form'} status={visible}>
 			<Background status={visible} onClick={changeVisibility} />
 
 			<Form id={'search-form'} onSubmit={formSubmit}>
+				<CloseButton close={changeVisibility} />
+
 				{children}
+
+				<Button disabled={submitButton} onClick={changeVisibility}>Search date</Button>
 			</Form>
 		</Card>
 	)

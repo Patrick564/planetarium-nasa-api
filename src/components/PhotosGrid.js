@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 const ImgStyled = styled.img`
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
 `
 
 const Photos = ({ photos, ...props }) => {
@@ -36,7 +36,7 @@ const PhotosGrid = styled(Photos)`
 
   @media (min-width: 769px) and (max-width: 1024px) {
     grid-template-columns: repeat(2, 1.5fr);
-    grdi-gap: 1.5rem;
+    grid-gap: 1.5rem;
   }
 `
 
