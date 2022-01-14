@@ -1,21 +1,48 @@
-# Planetarium
+# Planetarium (NASA API)
 
-This project was created for practice React, using NASA API of APOD and Mars Rover Photos.
-Using React, React Router, Styled Components and Axios. Upload in [Vercel](https://planetarium-nasa-api.vercel.app/).
+![screenshothome](https://raw.githubusercontent.com/Patrick564/static-files/main/screenshots/home.png)
+![screenshotapod](https://raw.githubusercontent.com/Patrick564/static-files/main/screenshots/apod.png)
 
-## Images
+## How To Use
 
-Under construction...
+To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
 
-## Installation
+```bash
+# Clone this repository using git
+$ git clone https://github.com/Patrick564/planetarium-nasa-api.git
 
-Once cloned, in project folder create an '.env' file and create a variable
-REACT_APP_NASA_API_KEY with your API key value.
+# Or use GitHub CLI
+$ gh repo clone Patrick564/planetarium-nasa-api
 
-Then run the command to install (replace if use yarn, npm or pnpm):
+# Go into the repository
+$ cd planetarium-nasa-api
 
-### `pnpm install`
+# Install dependencies
+$ npm install
 
-And run the server:
+# Or use Pnpm for install dependences
+$ pnpm install
 
-### `pnpm start`
+# Run the app
+$ npm start
+
+# Run with pnpm
+$ pnpm start
+```
+
+## Credits
+
+This software uses the following open source packages:
+
+- [Node.js](https://nodejs.org/)
+- [React](https://reactjs.org/)
+- [Vercel](https://vercel.com/)
+
+## Related
+
+[Planetarium](planetarium-nasa-api.vercel.app) - Vercel upload
+
+## License
+
+MIT
+
