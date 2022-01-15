@@ -1,9 +1,10 @@
 import styled from 'styled-components'
 
 import CloseButton from './CloseButton.js'
-import Button from './Button'
+import Button from './Button.js'
 
 const Card = styled.div`
+  transition: opacity 0.5s ease, visibility 0.5s ease, backdrop-filter 3s;
   top: 0;
   left: 0;
   right: 0;
@@ -12,9 +13,7 @@ const Card = styled.div`
   height: 100%;
   visibility: ${props => props?.status ? 'visible' : 'hidden'};
   opacity: ${props => props?.status ? '1' : '0'};
-  border-radius: 10px;
-  transition: opacity 0.5s ease-in, visibility 0.5s ease-in, backdrop-filter 0.2s ease-out;
-  backdrop-filter: ${props => props.status ? 'blur(5px)' : 'blur(0)'}
+  backdrop-filter: ${props => props.status ? 'blur(5px)' : 'blur(0)'};
 `
 
 const Background = styled.div`
@@ -24,9 +23,8 @@ const Background = styled.div`
   bottom: 0;
   position: absolute;
   height: 100%;
-  visibility: ${ props => props?.status ? 'visible' : 'hidden' };
-  opacity: ${ props => props?.status ? '1' : '0' };
-  border-radius: 10px;
+  visibility: ${props => props?.status ? 'visible' : 'hidden'};
+  opacity: ${props => props?.status ? '1' : '0'};
   transition: opacity 0.5s ease-in, visibility 0.5s ease-in;
 `
 
@@ -47,19 +45,19 @@ const Form = styled.form`
 `
 
 const CardForm = ({ changeVisibility, formSubmit, visible, children, submitButton }) => {
-	return (
-		<Card id={'card-form'} status={visible}>
-			<Background status={visible} onClick={changeVisibility} />
+  return (
+    <Card id={'card-form'} status={visible}>
+      <Background status={visible} onClick={changeVisibility}/>
 
-			<Form id={'search-form'} onSubmit={formSubmit}>
-				<CloseButton close={changeVisibility} />
+      <Form id={'search-form'} onSubmit={formSubmit}>
+        <CloseButton close={changeVisibility}/>
 
-				{children}
+        {children}
 
-				<Button disabled={submitButton} onClick={changeVisibility}>Search date</Button>
-			</Form>
-		</Card>
-	)
+        <Button disabled={submitButton} onClick={changeVisibility}>Search date</Button>
+      </Form>
+    </Card>
+  )
 }
 
 export default CardForm
