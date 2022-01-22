@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
 
-import Apod from '../api/apod.js'
+import apodApi from '../api/apodApi.js'
 
-const useForm = (initialState) => {
-  const [form, setForm] = useState(initialState)
+const useApodForm = (initialState) => {
+  const [data, setData] = useState(initialState)
 
   const callApi = async (date) => {
-    return await Apod(date)
+    return await apodApi(date)
   }
 
   const handleChange = async (e) => {
@@ -14,9 +14,8 @@ const useForm = (initialState) => {
 
     const apiData = await callApi(e.target.date.value)
 
-    setForm({
-      ...form,
-      [e.target.date.name]: e.target.date.value,
+    setData({
+      ...data,
       apiData,
     })
   }
@@ -25,13 +24,13 @@ const useForm = (initialState) => {
     const firstCall = async () => {
       const apiData = await callApi('')
 
-      setForm({ apiData })
+      setData({ apiData })
     }
 
     void firstCall()
   }, [])
 
-  return [form, handleChange]
+  return [data, handleChange]
 }
 
-export default useForm
+export default useApodForm

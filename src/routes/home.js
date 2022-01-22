@@ -1,12 +1,9 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-import Image from '../components/Image.js'
 import Navbar from '../components/Navbar.js'
 import StyledLink from '../components/StyledLink.js'
 import Wrapper from '../components/Wrapper.js'
-
-import githubLogo from '../img/GitHub-Mark.svg'
 
 const Container = styled.div`
   display: flex;
@@ -16,7 +13,6 @@ const Container = styled.div`
 
 const Title = styled.h4`
   font-size: 1.5rem;
-  font-style: bold;
   text-align: center;
   text-decoration: underline;
 `
@@ -32,10 +28,6 @@ const Home = () => {
     <div>
       <Navbar>
         <p style={{ color: 'white' }}>Planetarium</p>
-
-        <a href={'https://github.com/Patrick564/planetarium-nasa-api'} target={'_blank'} rel={'noopener noreferrer'}>
-          <Image src={githubLogo} alt={'To GitHub'} />
-        </a>
       </Navbar>
 
       <Wrapper>

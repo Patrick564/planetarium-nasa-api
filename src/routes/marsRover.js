@@ -1,80 +1,77 @@
-import { useState } from 'react'
-
+import CardForm from '../components/CardForm.js'
+import Content from '../components/Content.js'
+import Input from '../components/Input.js'
 import Navbar from '../components/Navbar.js'
 import PhotosGrid from '../components/PhotosGrid.js'
+import Select from '../components/Select.js'
 
 import useMarsForm from '../hooks/useMarsForm.js'
+import useCardVisibility from '../hooks/useCardVisibility.js'
+import { useState } from 'react'
+import Button from '../components/Button.js'
+import styled from 'styled-components'
 
-import Wrapper from '../components/Wrapper.js'
-import CardMenu from "../components/CardMenu";
-import styled from "styled-components";
-import Button from "../components/Button";
-import Select from "../components/Select";
-import Input from "../components/Input";
-
-const CloseButton = styled(Button)`
-  background: #fff;
-  color: black;
-  padding-top: 0;
-  border-bottom: 1px solid #ccc;
-  border-radius: 0;
-`
-
-const Form = styled.form`
+const CamerasGrid = styled.div`
   display: flex;
-  flex-direction: column;
-  padding: 5px 5px;
-  gap: 40px
+  gap: 15px;
+  margin-bottom: 35px;
+
+  @media (min-width: 320px) and (max-width: 425px) {
+    flex-direction: column;
+  }
+
+  @media (min-width: 426px) and (max-width: 768px) {
+    flex-direction: column;
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    flex-direction: column;
+  }
 `
 
 const MarsRover = () => {
+  const [camera, setCamera] = useState('FHAZ')
   const [form, handleChange] = useMarsForm({})
-  const [cardStatus, setCardStatus] = useState(false)
+  const [visibility, setVisibility] = useCardVisibility(false)
 
-  let photos = form?.apiData?.photos || []
-
-  const changeCardStatus = () => {
-    setCardStatus(!cardStatus)
+  const handleCamera = (e) => {
+    setCamera(e.target.value)
   }
 
   return (
     <div>
-      <Navbar>
-        <Button onClick={changeCardStatus}>Search</Button>
-      </Navbar>
+      <CardForm
+        visible={visibility}
+        changeVisibility={setVisibility}
+        formSubmit={handleChange}
+      >
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          <Select name={'type'}>
+            <option value={'earth_date'} defaultValue>Earth Date</option>
+            <option value={'sol'}>Martian Sol</option>
+          </Select>
 
-      <CardMenu status={cardStatus}>
-        <Form onSubmit={handleChange}>
-          <CloseButton onClick={changeCardStatus}>X</CloseButton>
+          <Input name={'date'} />
+        </div>
+      </CardForm>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            <Select name={'type'}>
-              <option value={'earth_date'} defaultValue>Earth Date</option>
-              <option value={'sol'}>Martian Sol</option>
-            </Select>
+      <Navbar changeVisibility={setVisibility} />
 
-            <Input />
+      <Content directionCol={true}>
+        <CamerasGrid>
+          <Button onClick={handleCamera} value={'FHAZ'}>FHAZ</Button>
+          <Button onClick={handleCamera} value={'RHAZ'}>RHAZ</Button>
+          <Button onClick={handleCamera} value={'MAST'}>MAST</Button>
+          <Button onClick={handleCamera} value={'CHEMCAM'}>CHEMCAM</Button>
+          <Button onClick={handleCamera} value={'MAHLI'}>MAHLI</Button>
+          <Button onClick={handleCamera} value={'MARDI'}>MARDI</Button>
+          <Button onClick={handleCamera} value={'NAVCAM'}>NAVCAM</Button>
+          <Button onClick={handleCamera} value={'PANCAM'}>PANCAM</Button>
+          <Button onClick={handleCamera} value={'MINITES'}>MINITES</Button>
+        </CamerasGrid>
 
-            <Select name={'camera'}>
-              <option value={'fhaz'} defaultValue>Front Hazard Avoidance Camera</option>
-              <option value={'rhaz'}>Rear Hazard Avoidance Camera</option>
-              <option value={'mast'}>Mast Camera</option>
-              <option value={'chemcam'}>Chemistry and Camera Complex</option>
-              <option value={'mahli'}>Mars Hand Lens Imager</option>
-              <option value={'mardi'}>Mars Descent Imager</option>
-              <option value={'navcam'}>Navigation Camera</option>
-              <option value={'pancam'}>Panoramic Camera</option>
-              <option value={'minites'}>Miniature Thermal Emission Spectrometer (Mini-TES)</option>
-            </Select>
-          </div>
-
-          <Button onClick={changeCardStatus}>Search photos</Button>
-        </Form>
-      </CardMenu>
-
-      <Wrapper>
-        <PhotosGrid photos={photos} />
-      </Wrapper>
+        <PhotosGrid photos={form[camera]} />
+      </Content>
     </div>
   )
 }

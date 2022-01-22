@@ -1,68 +1,52 @@
-import styled from 'styled-components'
 import { useState } from 'react'
 
-import Button from '../components/Button.js'
-import CardMenu from '../components/CardMenu.js'
+import CardForm from '../components/CardForm.js'
 import Content from '../components/Content.js'
-import Image from '../components/Image.js'
 import Input from '../components/Input.js'
+import Image from '../components/Image.js'
 import Navbar from '../components/Navbar.js'
+import SpanMessage from '../components/SpanMessage.js'
 
-import useForm from '../hooks/useForm.js'
+import useApodForm from '../hooks/useApodForm.js'
 import useValidateDate from '../hooks/useValidateDate.js'
 
-import HomeImg from '../img/home.svg'
+import styled from 'styled-components'
 
-const StatusMessage = styled.span`
-  font-size: 0.8rem;
-  align-self: center;
-  color: tomato;
+const Title = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 5px 5px;
+  padding: 15px 15px;
+  border-radius: 15px;
+  font-family: 'Rubik', sans-serif;
+  box-shadow: 0 0 5px #133F47;
+  color: #34B0C6;
+
+  @media (min-width: 320px) and (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px
+  }
 `
 
-const Form = styled.form`
+const Info = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 5px 5px;
-  gap: 40px
+  justify-content: center;
+  gap: 15px;
 `
 
-const CloseButton = styled(Button)`
-  background: #fff;
-  color: black;
-  padding-top: 0;
-  border-bottom: 1px solid #ccc;
-  border-radius: 0;
-`
-
-const Background = styled.div`
-  right: 0;
-  left: 0;
-  top: 20%;
-  position: absolute;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 250px;
-  background: #fff;
-  border-radius: 10px;
-  padding: 20px 20px;
-`
-
-const Card = styled.div`
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  position: absolute;
-  height: 100%;
-  visibility: ${ props => props.status ? 'visible' : 'hidden' };
-  opacity: ${ props => props.status ? '1' : '0' };
-  border-radius: 10px;
-  transition: opacity 0.5s ease-in, visibility 0.5s ease-in, backdrop-filter 0.2s ease-out;
-  backdrop-filter: ${ props => props?.status ? 'blur(5px)' : 'blur(0)' }
+const Explanation = styled.p`
+  margin: 5px 5px;
+  padding: 35px 35px;
+  border-radius: 15px;
+  color: #34B0C6;
+  box-shadow: 0 0 5px #133F47;
 `
 
 const Apod = () => {
+<<<<<<< HEAD
   // const [] useState({ visibility: false, blur: false })
   const [cardStatus, setCardStatus] = useState(false)
   const [form, handleChange] = useForm({ date: '' })
@@ -70,38 +54,46 @@ const Apod = () => {
 
   const changeCardStatus = () => {
     setCardStatus(!cardStatus)
+=======
+  const [visibility, setVisibility] = useState(false)
+  const [data, setData] = useApodForm({ date: '' })
+  const [validate, setValidate] = useValidateDate({ message: '', disabledButton: false })
+
+  const handleVisibility = () => {
+    setVisibility(!visibility)
+>>>>>>> refactor-apod
   }
 
   // CardMenu BackgroundMenu SearchForm
 
   return (
     <div>
-      <Card id={'card-menu'} status={cardStatus}>
-        <CardMenu status={cardStatus} onClick={changeCardStatus} />
-        <Background id={'card-search-form'}>
-          <Form id={'search-form'} onSubmit={handleChange}>
-              <CloseButton onClick={changeCardStatus}>X</CloseButton>
+      <CardForm
+        visible={visibility}
+        changeVisibility={handleVisibility}
+        formSubmit={setData}
+        submitButton={validate.disabledButton}
+      >
+        <label style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          <Input id={'date'} type={'date'} name={'date'} onChange={setValidate} />
+          <SpanMessage message={validate.message} />
+        </label>
+      </CardForm>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                <Input onChange={validateDate} type={'date'} name={'date'} />
-                <StatusMessage>{status.message}</StatusMessage>
-              </div>
+      <Navbar changeVisibility={handleVisibility} />
 
-              <Button disabled={status.disabledButton} onClick={changeCardStatus}>Search date</Button>
-          </Form>
-        </Background>
-      </Card>
+      <Content>
+        <Image src={data.apiData?.url} alt={'Loading'} />
 
-      <Navbar>
-        <a href={'/'}>
-          <Image src={HomeImg} alt={'Home'} />
-        </a>
+        <Info>
+          <Title>
+            <h2>{data.apiData?.title}</h2>
+            <span style={{ fontStyle: 'italic' }}>{data.apiData?.date}</span>
+          </Title>
 
-        <Button id={'open-button'} onClick={changeCardStatus}>Search</Button>
-      </Navbar>
-
-
-      <Content data={form.apiData} />
+          <Explanation>{data.apiData?.explanation}</Explanation>
+        </Info>
+      </Content>
     </div>
   )
 }

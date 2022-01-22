@@ -3,10 +3,30 @@ import { useState, useEffect } from 'react'
 import MarsRoverPhotos from '../api/mars-rover-photos'
 
 const useMarsForm = (initialState) => {
-  const [form, setForm] = useState(initialState)
+  const [data, setData] = useState(initialState)
 
-  const callApi = async (type, date, camera, page) => {
-    return await MarsRoverPhotos(type, date, camera, page)
+  const dividePhotos = (photos) => {
+    let dividedPhotos = {
+      FHAZ: [],
+      RHAZ: [],
+      MAST: [],
+      CHEMCAM: [],
+      MAHLI: [],
+      MARDI: [],
+      NAVCAM: [],
+      PANCAM: [],
+      MINITES: [],
+    }
+
+    photos.photos.forEach((photo) => {
+      dividedPhotos[photo.camera.name].push(photo.img_src)
+    })
+
+    return dividedPhotos
+  }
+
+  const callApi = async (type, date) => {
+    return await MarsRoverPhotos(type, date)
   }
 
   const handleChange = async (e) => {
@@ -14,27 +34,28 @@ const useMarsForm = (initialState) => {
 
     let type = e.target.type.value
     let date = e.target.date.value
-    let camera = e.target.camera.value
 
-    const apiData = await callApi(type, date, camera, 1)
+    const apiData = await callApi(type, date)
+    let filteredData = dividePhotos(apiData)
 
-    setForm({
-      ...form,
-      apiData,
+    setData({
+      ...data,
+      filteredData,
     })
   }
 
   useEffect(() => {
     const firstCall = async () => {
-      const apiData = await callApi('earth_date', '2021-12-16', 'fhaz', 1)
+      const apiData = await callApi('earth_date', '2021-12-16')
+      let filteredData = dividePhotos(apiData)
 
-      setForm({ apiData })
+      setData(filteredData)
     }
 
-    firstCall()
+    void firstCall()
   }, [])
 
-  return [form, handleChange]
+  return [data, handleChange]
 }
 
 export default useMarsForm
