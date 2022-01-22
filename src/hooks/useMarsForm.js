@@ -35,12 +35,13 @@ const useMarsForm = (initialState) => {
     let type = e.target.type.value
     let date = e.target.date.value
 
+    console.log(type, date)
+
     const apiData = await callApi(type, date)
     let filteredData = dividePhotos(apiData)
 
     setData({
-      ...data,
-      filteredData,
+      ...filteredData,
     })
   }
 

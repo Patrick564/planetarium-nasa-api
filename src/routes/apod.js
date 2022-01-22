@@ -46,25 +46,13 @@ const Explanation = styled.p`
 `
 
 const Apod = () => {
-<<<<<<< HEAD
-  // const [] useState({ visibility: false, blur: false })
-  const [cardStatus, setCardStatus] = useState(false)
-  const [form, handleChange] = useForm({ date: '' })
-  const [status, validateDate] = useValidateDate({ message: '', disabledButton: false })
-
-  const changeCardStatus = () => {
-    setCardStatus(!cardStatus)
-=======
   const [visibility, setVisibility] = useState(false)
   const [data, setData] = useApodForm({ date: '' })
   const [validate, setValidate] = useValidateDate({ message: '', disabledButton: false })
 
   const handleVisibility = () => {
     setVisibility(!visibility)
->>>>>>> refactor-apod
   }
-
-  // CardMenu BackgroundMenu SearchForm
 
   return (
     <div>
