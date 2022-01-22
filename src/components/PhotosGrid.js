@@ -8,9 +8,9 @@ const ImgStyled = styled.img`
 const Photos = ({ photos, ...props }) => {
   return (
     <div {...props}>
-      {photos.map((photo) => {
+      {photos?.map((photo) => {
         return (
-          <ImgStyled key={photo.id} src={photo.img_src} alt={photo.id} />
+          <ImgStyled src={photo} />
         )
       })}
     </div>

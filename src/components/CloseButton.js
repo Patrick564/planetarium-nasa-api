@@ -6,7 +6,7 @@ import CloseImage from '../img/close.png'
 
 const Close = ({ close, ...props }) => {
 	return (
-		<Button onClick={close} {...props}>
+		<Button type={'button'} onClick={close} {...props}>
 			<img src={CloseImage} alt={'Close'} width={'16px'} />
 		</Button>
 	)

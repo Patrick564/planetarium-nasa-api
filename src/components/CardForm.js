@@ -4,16 +4,15 @@ import CloseButton from './CloseButton.js'
 import Button from './Button.js'
 
 const Card = styled.div`
-  transition: opacity 0.5s ease, visibility 0.5s ease, backdrop-filter 3s;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   position: absolute;
-  height: 100%;
+  height: auto;
   visibility: ${props => props?.status ? 'visible' : 'hidden'};
   opacity: ${props => props?.status ? '1' : '0'};
-  backdrop-filter: ${props => props.status ? 'blur(5px)' : 'blur(0)'};
+  transition: opacity 0.5s linear, visibility 0.5s linear;
 `
 
 const Background = styled.div`
@@ -25,7 +24,8 @@ const Background = styled.div`
   height: 100%;
   visibility: ${props => props?.status ? 'visible' : 'hidden'};
   opacity: ${props => props?.status ? '1' : '0'};
-  transition: opacity 0.5s ease-in, visibility 0.5s ease-in;
+  background-color: ${props => props?.status ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0)'};
+  transition: opacity 0.5s linear, visibility 0.5s linear, background-color 0.5s linear;
 `
 
 const Form = styled.form`
@@ -47,10 +47,10 @@ const Form = styled.form`
 const CardForm = ({ changeVisibility, formSubmit, visible, children, submitButton }) => {
   return (
     <Card id={'card-form'} status={visible}>
-      <Background status={visible} onClick={changeVisibility}/>
+      <Background status={visible} onClick={changeVisibility} />
 
       <Form id={'search-form'} onSubmit={formSubmit}>
-        <CloseButton close={changeVisibility}/>
+        <CloseButton close={changeVisibility} />
 
         {children}
 
