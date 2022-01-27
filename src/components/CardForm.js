@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 import CloseButton from './CloseButton.js'
-import Button from './Button.js'
 
 const Card = styled.div`
   top: 0;
@@ -41,20 +40,20 @@ const Form = styled.form`
   padding: 25px 25px;
   display: flex;
   flex-direction: column;
-  gap: 40px
+  gap: 40px;
 `
 
-const CardForm = ({ changeVisibility, formSubmit, visible, children, submitButton }) => {
+const CardForm = ({ changeVisibility, formSubmit, isVisible, children }) => {
   return (
-    <Card id={'card-form'} status={visible}>
-      <Background status={visible} onClick={changeVisibility} />
+    <Card id={'card-form'} status={isVisible}>
+      <Background id={'background-form'} status={isVisible} onClick={changeVisibility} />
 
       <Form id={'search-form'} onSubmit={formSubmit}>
         <CloseButton close={changeVisibility} />
 
         {children}
 
-        <Button disabled={submitButton} onClick={changeVisibility}>Search date</Button>
+        {/*<Button disabled={submitButton} onClick={changeVisibility}>Search date</Button>*/}
       </Form>
     </Card>
   )

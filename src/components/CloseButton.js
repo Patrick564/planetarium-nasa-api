@@ -1,15 +1,15 @@
 import styled from 'styled-components'
 
-import Button from './Button'
+import Button from './Button.js'
 
 import CloseImage from '../img/close.png'
 
 const Close = ({ close, ...props }) => {
-	return (
-		<Button type={'button'} onClick={close} {...props}>
-			<img src={CloseImage} alt={'Close'} width={'16px'} />
-		</Button>
-	)
+  return (
+    <Button type={'button'} onClick={close} {...props}>
+      <img src={CloseImage} alt={'Close'} width={'16px'} />
+    </Button>
+  )
 }
 
 const CloseButton = styled(Close)`

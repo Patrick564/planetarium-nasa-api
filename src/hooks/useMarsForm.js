@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-import MarsRoverPhotos from '../api/mars-rover-photos'
+import MarsRoverPhotos from '../api/mars-rover-photos.js'
 
 const useMarsForm = (initialState) => {
   const [data, setData] = useState(initialState)

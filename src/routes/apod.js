@@ -1,5 +1,7 @@
+import styled from 'styled-components'
 import { useState } from 'react'
 
+import Button from '../components/Button.js'
 import CardForm from '../components/CardForm.js'
 import Content from '../components/Content.js'
 import Input from '../components/Input.js'
@@ -9,8 +11,6 @@ import SpanMessage from '../components/SpanMessage.js'
 
 import useApodForm from '../hooks/useApodForm.js'
 import useValidateDate from '../hooks/useValidateDate.js'
-
-import styled from 'styled-components'
 
 const Title = styled.div`
   display: flex;
@@ -57,15 +57,16 @@ const Apod = () => {
   return (
     <div>
       <CardForm
-        visible={visibility}
+        isVisible={visibility}
         changeVisibility={handleVisibility}
         formSubmit={setData}
-        submitButton={validate.disabledButton}
       >
-        <label style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-          <Input id={'date'} type={'date'} name={'date'} onChange={setValidate} />
-          <SpanMessage message={validate.message} />
-        </label>
+          <label style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            <Input id={'date'} type={'date'} name={'date'} onChange={setValidate} />
+            <SpanMessage message={validate.message} />
+          </label>
+
+        <Button disabled={validate.disabledButton} onClick={handleVisibility}>Search date</Button>
       </CardForm>
 
       <Navbar changeVisibility={handleVisibility} />

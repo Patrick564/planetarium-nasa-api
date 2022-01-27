@@ -1,3 +1,7 @@
+import styled from 'styled-components'
+import { useState } from 'react'
+
+import Button from '../components/Button.js'
 import CardForm from '../components/CardForm.js'
 import Content from '../components/Content.js'
 import Input from '../components/Input.js'
@@ -5,16 +9,13 @@ import Navbar from '../components/Navbar.js'
 import PhotosGrid from '../components/PhotosGrid.js'
 import Select from '../components/Select.js'
 
-import useMarsForm from '../hooks/useMarsForm.js'
 import useCardVisibility from '../hooks/useCardVisibility.js'
-import { useState } from 'react'
-import Button from '../components/Button.js'
-import styled from 'styled-components'
+import useMarsForm from '../hooks/useMarsForm.js'
 
 const CamerasGrid = styled.div`
-  display: flex;
+  display: grid;
+  grid-column: 2;
   gap: 15px;
-  margin-bottom: 35px;
 
   @media (min-width: 320px) and (max-width: 425px) {
     flex-direction: column;
@@ -32,17 +33,21 @@ const CamerasGrid = styled.div`
 const MarsRover = () => {
   const [camera, setCamera] = useState('FHAZ')
   const [form, handleChange] = useMarsForm({})
-  const [visibility, setVisibility] = useCardVisibility(false)
+  const [formVisibility, setFormVisibility] = useCardVisibility(false)
+  const [camerasVisibility, setCamerasVisibility] = useCardVisibility(false)
+
+  const cameras = Object.keys(form) || []
 
   const handleCamera = (e) => {
     setCamera(e.target.value)
+    setCamerasVisibility()
   }
 
   return (
     <div>
       <CardForm
-        visible={visibility}
-        changeVisibility={setVisibility}
+        isVisible={formVisibility}
+        changeVisibility={setFormVisibility}
         formSubmit={handleChange}
       >
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
@@ -53,22 +58,34 @@ const MarsRover = () => {
 
           <Input name={'date'} />
         </div>
+
+        <Button disabled={''} onClick={setFormVisibility}>Search date</Button>
       </CardForm>
 
-      <Navbar changeVisibility={setVisibility} />
+      <Navbar changeVisibility={setFormVisibility} />
 
       <Content directionCol={true}>
-        <CamerasGrid>
-          <Button onClick={handleCamera} value={'FHAZ'}>FHAZ</Button>
-          <Button onClick={handleCamera} value={'RHAZ'}>RHAZ</Button>
-          <Button onClick={handleCamera} value={'MAST'}>MAST</Button>
-          <Button onClick={handleCamera} value={'CHEMCAM'}>CHEMCAM</Button>
-          <Button onClick={handleCamera} value={'MAHLI'}>MAHLI</Button>
-          <Button onClick={handleCamera} value={'MARDI'}>MARDI</Button>
-          <Button onClick={handleCamera} value={'NAVCAM'}>NAVCAM</Button>
-          <Button onClick={handleCamera} value={'PANCAM'}>PANCAM</Button>
-          <Button onClick={handleCamera} value={'MINITES'}>MINITES</Button>
-        </CamerasGrid>
+        <Button onClick={setCamerasVisibility}>Cameras</Button>
+
+        <CardForm isVisible={camerasVisibility} changeVisibility={setCamerasVisibility}>
+          <CamerasGrid>
+            {/*<Button type={'button'} onClick={handleCamera} value={'FHAZ'}>FHAZ</Button>*/}
+            {/*<Button type={'button'} onClick={handleCamera} value={'RHAZ'}>RHAZ</Button>*/}
+            {/*<Button type={'button'} onClick={handleCamera} value={'MAST'}>MAST</Button>*/}
+            {/*<Button type={'button'} onClick={handleCamera} value={'CHEMCAM'}>CHEMCAM</Button>*/}
+            {/*<Button type={'button'} onClick={handleCamera} value={'MAHLI'}>MAHLI</Button>*/}
+            {/*<Button type={'button'} onClick={handleCamera} value={'MARDI'}>MARDI</Button>*/}
+            {/*<Button onClick={handleCamera} value={'NAVCAM'}>NAVCAM</Button>*/}
+            {/*<Button onClick={handleCamera} value={'PANCAM'}>PANCAM</Button>*/}
+            {/*<Button onClick={handleCamera} value={'MINITES'}>MINITES</Button>*/}
+
+            {cameras.map((camera) => {
+              return (
+                <Button key={camera} type={'button'} onClick={handleCamera} value={camera}>{camera}</Button>
+              )
+            })}
+          </CamerasGrid>
+        </CardForm>
 
         <PhotosGrid photos={form[camera]} />
       </Content>

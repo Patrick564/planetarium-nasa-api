@@ -9,7 +9,9 @@ const Wrapper = styled.div`
 const Container = styled.div`
   display: flex;
   width: 80%;
-  flex-direction: ${props => props?.direction ? 'column' : 'row'};
+  align-items: center;
+  flex-direction: ${props => props?.$direction ? 'column' : 'row'};
+  gap: ${props => props?.$direction ? '35px' : '0'};
 
   @media (min-width: 320px) and (max-width: 425px) {
     flex-direction: column;
@@ -27,14 +29,14 @@ const Container = styled.div`
     width: 95%;
     align-items: center;
     justify-content: center;
-    flex-direction: ${props => props?.direction ? 'column' : 'row'};
+    flex-direction: ${props => props?.$direction ? 'column' : 'row'};
   }
 `
 
 const Content = ({ children, directionCol }) => {
   return (
     <Wrapper>
-      <Container direction={directionCol}>
+      <Container $direction={directionCol}>
         {children}
       </Container>
     </Wrapper>
