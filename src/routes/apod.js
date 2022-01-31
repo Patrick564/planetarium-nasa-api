@@ -1,16 +1,16 @@
 import styled from 'styled-components'
-import { useState } from 'react'
 
-import Button from '../components/Button.js'
 import CardForm from '../components/CardForm.js'
 import Content from '../components/Content.js'
 import Input from '../components/Input.js'
 import Image from '../components/Image.js'
 import Navbar from '../components/Navbar.js'
+import SendBtn from '../components/SendBtn.js'
 import SpanMessage from '../components/SpanMessage.js'
 
 import useApodForm from '../hooks/useApodForm.js'
 import useValidateDate from '../hooks/useValidateDate.js'
+import useCardVisibility from '../hooks/useCardVisibility.js'
 
 const Title = styled.div`
   display: flex;
@@ -46,30 +46,26 @@ const Explanation = styled.p`
 `
 
 const Apod = () => {
-  const [visibility, setVisibility] = useState(false)
+  const [formVisibility, setFormVisibility] = useCardVisibility(false)
   const [data, setData] = useApodForm({ date: '' })
   const [validate, setValidate] = useValidateDate({ message: '', disabledButton: false })
-
-  const handleVisibility = () => {
-    setVisibility(!visibility)
-  }
 
   return (
     <div>
       <CardForm
-        isVisible={visibility}
-        changeVisibility={handleVisibility}
+        isVisible={formVisibility}
+        changeVisibility={setFormVisibility}
         formSubmit={setData}
       >
-          <label style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            <Input id={'date'} type={'date'} name={'date'} onChange={setValidate} />
-            <SpanMessage message={validate.message} />
-          </label>
+        <label style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          <Input id={'date'} type={'date'} name={'date'} onChange={setValidate} />
+          <SpanMessage message={validate.message} />
+        </label>
 
-        <Button disabled={validate.disabledButton} onClick={handleVisibility}>Search date</Button>
+        <SendBtn disabled={validate.disabledButton} onClick={setFormVisibility}>Search date</SendBtn>
       </CardForm>
 
-      <Navbar changeVisibility={handleVisibility} />
+      <Navbar changeVisibility={setFormVisibility} />
 
       <Content>
         <Image src={data.apiData?.url} alt={'Loading'} />

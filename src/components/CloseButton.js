@@ -15,9 +15,10 @@ const Close = ({ close, ...props }) => {
 const CloseButton = styled(Close)`
   background: #fff;
   color: black;
-  padding-top: 0;
+  padding-top: 5px;
   border-bottom: 1px solid #ccc;
   border-radius: 0;
+  outline: none;
 `
 
 export default CloseButton

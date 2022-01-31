@@ -4,6 +4,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   padding: 35px 25px 25px 25px;
+  height: ${props => props?.$direction ? '100%': ''};
 `
 
 const Container = styled.div`
@@ -35,7 +36,7 @@ const Container = styled.div`
 
 const Content = ({ children, directionCol }) => {
   return (
-    <Wrapper>
+    <Wrapper $direction={directionCol}>
       <Container $direction={directionCol}>
         {children}
       </Container>

@@ -1,8 +1,11 @@
 import styled from 'styled-components'
 
-const ImgStyled = styled.img`
+import Image from './Image.js'
+
+const ImgStyled = styled(Image)`
   width: 250px;
   height: 250px;
+  margin: 20px 20px;
 `
 
 const Photos = ({ photos, ...props }) => {

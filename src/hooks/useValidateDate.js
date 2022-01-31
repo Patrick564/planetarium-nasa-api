@@ -1,6 +1,7 @@
 import dayjs from 'dayjs'
 import { useState } from 'react'
 
+// Format used is YYYY-DD-MM
 const useValidateDate = (initialState) => {
   const [message, setMessage] = useState(initialState)
 

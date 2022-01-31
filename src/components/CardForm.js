@@ -37,10 +37,10 @@ const Form = styled.form`
   width: 250px;
   background: #fff;
   border-radius: 10px;
-  padding: 25px 25px;
+  padding: 20px 15px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 25px;
 `
 
 const CardForm = ({ changeVisibility, formSubmit, isVisible, children }) => {
